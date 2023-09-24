@@ -8,7 +8,7 @@ on:
 jobs:
   readmeWorkflow:
     name: Readme Workflow ✨
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.0
@@ -68,7 +68,7 @@ jobs:
 
   requestManualActivationFile:
     name: Request manual activation file 🔑
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       # Checkout repository
       - uses: actions/checkout@v4.1.0
@@ -85,14 +85,14 @@ jobs:
 
           #  requestActivation:
         #    name: Request activation ✔
-      #    runs-on: windows-latest
+      #    runs-on: ubuntu-latest
       #    steps:
       #      - uses: actions/checkout@v4.1.0
       #      - uses: game-ci/unity-activate@v2
       #
       #  activateAndThenReturnLicense:
       #    name: returnLicense 🎈
-      #    runs-on: windows-latest
+      #    runs-on: ubuntu-latest
       #    steps:
       #      - uses: actions/checkout@v4.1.0
       #      - uses: game-ci/unity-activate@v2
@@ -100,7 +100,7 @@ jobs:
 
   testRunnerInEditMode:
     name: Test in editmode 📝
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.0
@@ -144,7 +144,7 @@ jobs:
 
   testRunnerInPlayMode:
     name: Test in playmode 📺
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.0
@@ -189,7 +189,7 @@ jobs:
 
   testRunnerInAllModes:
     name: Test in ${{ matrix.testMode }} ✨
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -247,7 +247,7 @@ jobs:
 
   buildAndTestForSomePlatforms:
     name: Build for ${{ matrix.targetPlatform }}
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
