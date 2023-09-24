@@ -71,14 +71,14 @@ jobs:
     runs-on: windows-latest
     steps:
       # Checkout repository
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4.1.0
 
       # Request manual activation file
-      - uses: game-ci/unity-request-activation-file@v2
+      - uses: game-ci/unity-request-activation-file@v2.0.0
         id: getManualLicenseFile
 
       # Upload artifact (Unity_v20XX.X.XXXX.alf)
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3.1.3
         with:
           name: Manual Activation File
           path: ${{ steps.getManualLicenseFile.outputs.filePath }}
@@ -87,14 +87,14 @@ jobs:
         #    name: Request activation ✔
       #    runs-on: windows-latest
       #    steps:
-      #      - uses: actions/checkout@v2
+      #      - uses: actions/checkout@v4.1.0
       #      - uses: game-ci/unity-activate@v2
       #
       #  activateAndThenReturnLicense:
       #    name: returnLicense 🎈
       #    runs-on: windows-latest
       #    steps:
-      #      - uses: actions/checkout@v2
+      #      - uses: actions/checkout@v4.1.0
       #      - uses: game-ci/unity-activate@v2
       #      - uses: game-ci/unity-return-license@v2
 
@@ -103,13 +103,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.0
 
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
       - name: Restore LFS cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.3.2
         id: lfs-cache
         with:
           path: .git/lfs
@@ -122,7 +122,7 @@ jobs:
           git reset --hard
 
       - name: Restore Library cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.3.2
         with:
           path: test-projects/test-project/Library
           key: Library-test-project
@@ -130,14 +130,14 @@ jobs:
             Library-test-
 
       # Configure test runner
-      - uses: game-ci/unity-test-runner@v2
+      - uses: game-ci/unity-test-runner@v3.1.0
         id: testRunner
         with:
           projectPath: test-projects/test-project
           testMode: editmode
 
       # Upload artifact
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3.1.3
         with:
           name: Test results (edit mode)
           path: ${{ steps.testRunner.outputs.artifactsPath }}
@@ -147,13 +147,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.0
 
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
       - name: Restore LFS cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.3.2
         id: lfs-cache
         with:
           path: .git/lfs
@@ -166,7 +166,7 @@ jobs:
           git reset --hard
 
       - name: Restore Library cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.3.2
         with:
           path: test-projects/test-project/Library
           key: Library-test-project-${{ matrix.targetPlatform }}
@@ -175,14 +175,14 @@ jobs:
             Library-
 
       # Configure test runner
-      - uses: game-ci/unity-test-runner@v2
+      - uses: game-ci/unity-test-runner@v3.1.0
         id: testRunner
         with:
           projectPath: test-projects/test-project
           testMode: playmode
 
       # Upload artifact
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3.1.3
         with:
           name: Test results (play mode)
           path: ${{ steps.testRunner.outputs.artifactsPath }}
@@ -199,13 +199,13 @@ jobs:
     steps:
       # Checkout repository (required to test local actions)
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.0
 
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
       - name: Restore LFS cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.3.2
         id: lfs-cache
         with:
           path: .git/lfs
@@ -218,7 +218,7 @@ jobs:
           git reset --hard
 
       - name: Restore Library cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.3.2
         with:
           path: test-projects/test-project/Library
           key: Library-test-project-${{ matrix.targetPlatform }}
@@ -227,7 +227,7 @@ jobs:
             Library-
 
       # Configure test runner
-      - uses: game-ci/unity-test-runner@v2.0-alpha-5
+      - uses: game-ci/unity-test-runner@v3.1.0
         id: testRunner
         with:
           projectPath: test-projects/test-project
@@ -236,7 +236,7 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
       # Upload artifacts
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3.1.3
         with:
           name: Test results (${{ matrix.testMode }})
           path: ${{ steps.testRunner.outputs.artifactsPath }}
@@ -258,13 +258,13 @@ jobs:
           - StandaloneLinux64 # Build a Linux 64-bit standalone.
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.1.0
 
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
       - name: Restore LFS cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.3.2
         id: lfs-cache
         with:
           path: .git/lfs
@@ -277,27 +277,27 @@ jobs:
           git reset --hard
 
       - name: Restore Library cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3.3.2
         with:
           path: ${{ matrix.projectPath }}/Library
           key: Library-buildAndTest-${{ matrix.projectPath }}-buildAndTest-${{ matrix.targetPlatform }}
           restore-keys: |
             Library-${{ matrix.projectPath }}-buildAndTest-
             Library-${{ matrix.projectPath }}-
-      - uses: game-ci/unity-test-runner@v2
+      - uses: game-ci/unity-test-runner@v3.1.0
         id: testRunner
         with:
           projectPath: ${{ matrix.projectPath }}
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3.1.3
         with:
           name: Test results (all modes)
           path: ${{ steps.testRunner.outputs.artifactsPath }}
-      - uses: game-ci/unity-builder@v2
+      - uses: game-ci/unity-builder@v3.1.0
         with:
           projectPath: ${{ matrix.projectPath }}
           targetPlatform: ${{ matrix.targetPlatform }}
           customParameters: "-myParameter myValue -myBoolean -ThirdParameter andItsValue"
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3.1.3
         with:
           name: Build (${{ matrix.targetPlatform }})
           path: build/${{ matrix.targetPlatform }}
