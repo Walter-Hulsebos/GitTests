@@ -167,8 +167,8 @@ jobs:
 #      - name: Restore Library cache
 #        uses: actions/cache@v3.3.2
 #        with:
-#          path: test-projects/test-project/Library
-#          key: Library-test-project
+#          path: /Library
+#          key: Library-
 #
 #      # Test
 #      - name: Run tests
@@ -269,8 +269,8 @@ jobs:
 #      - name: Restore Library cache
 #        uses: actions/cache@v3.3.2
 #        with:
-#          path: test-projects/test-project/Library
-#          key: Library-test-project
+#          path: /Library
+#          key: Library-
 #          restore-keys: |
 #            Library-test-
 #
@@ -321,10 +321,9 @@ jobs:
 #      - name: Restore Library cache
 #        uses: actions/cache@v3.3.2
 #        with:
-#          path: test-projects/test-project/Library
-#          key: Library-test-project-${{ matrix.targetPlatform }}
+#          path: /Library
+#          key: Library-${{ matrix.targetPlatform }}
 #          restore-keys: |
-#            Library-test-project-
 #            Library-
 #
 #      # Configure test runner
@@ -381,10 +380,9 @@ jobs:
 #      - name: Restore Library cache
 #        uses: actions/cache@v3.3.2
 #        with:
-#          path: test-projects/test-project/Library
-#          key: Library-test-project-${{ matrix.targetPlatform }}
+#          path: /Library
+#          key: Library-${{ matrix.targetPlatform }}
 #          restore-keys: |
-#            Library-test-project-
 #            Library-
 #
 #      # Configure test runner
