@@ -101,20 +101,20 @@ jobs:
 
       - name: Upload Build
         uses: actions/upload-artifact@v3
-        if: github.event.action == 'published' || contains(github.event.inputs.workflow_mode, matrix.targetPlatform) || (contains(github.event.inputs.workflow_mode, 'Steam') && matrix.targetPlatform == 'StandaloneWindows64')
+        #if: github.event.action == 'published' || contains(github.event.inputs.workflow_mode, matrix.targetPlatform) || contains(github.event.inputs.workflow_mode, 'Steam')
         with:
           name: build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
 
       - name: Zip Build
         uses: montudor/action-zip@v1
-        if: github.event.action == 'published' && matrix.targetPlatform == 'StandaloneWindows64'
+        #if: github.event.action == 'published' && matrix.targetPlatform == 'StandaloneWindows64'
         with:
           args: zip -qq -r build/build-${{ matrix.targetPlatform }}.zip build/${{ matrix.targetPlatform }}
 
       - name: Upload Zip to GitHub Release
         uses: svenstaro/upload-release-action@v2
-        if: github.event.action == 'published' && matrix.targetPlatform == 'StandaloneWindows64'
+        #if: github.event.action == 'published' && matrix.targetPlatform == 'StandaloneWindows64'
         with:
           asset_name: build-${{ matrix.targetPlatform }}.zip
           file: build/build-${{ matrix.targetPlatform }}.zip
