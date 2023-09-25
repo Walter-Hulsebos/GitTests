@@ -13,6 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4.1.0
         with:
+          fetch-depth: 0
           lfs: true
 
       - name: Create LFS file list
@@ -78,6 +79,9 @@ jobs:
     steps:
       # Checkout repository
       - uses: actions/checkout@v4.1.0
+        with:
+          fetch-depth: 0
+          lfs: true
 
       # Request manual activation file
       - uses: game-ci/unity-request-activation-file@v2.0.0
@@ -110,6 +114,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.0
+        with:
+          fetch-depth: 0
+          lfs: true
 
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
@@ -159,6 +166,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.0
+        with:
+          fetch-depth: 0
+          lfs: true
 
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
@@ -216,6 +226,9 @@ jobs:
       # Checkout repository (required to test local actions)
       - name: Checkout code
         uses: actions/checkout@v4.1.0
+        with:
+          fetch-depth: 0
+          lfs: true
 
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
@@ -279,6 +292,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.0
+        with:
+          fetch-depth: 0
+          lfs: true
 
       - name: Create LFS file list
         run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
