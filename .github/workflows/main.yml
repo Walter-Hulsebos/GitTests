@@ -2,6 +2,7 @@ name: Unity Actions
 
 on:
   pull_request: { branches: [stable] }
+  push: { branches: [stable] }
   workflow_dispatch: {}
 
 jobs:
