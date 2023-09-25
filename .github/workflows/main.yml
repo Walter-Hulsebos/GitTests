@@ -28,7 +28,7 @@ jobs:
 
   testRunnerInEditMode:
     name: Test in editmode 📝
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.0
@@ -56,7 +56,7 @@ jobs:
         uses: actions/cache@v3.3.2
         with:
           path: /Library
-          key: Library-${{ matrix.targetPlatform }}
+          key: Library
           restore-keys: |
             Library
 
@@ -80,7 +80,7 @@ jobs:
 
   testRunnerInPlayMode:
     name: Test in playmode 📺
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.1.0
@@ -108,7 +108,7 @@ jobs:
         uses: actions/cache@v3.3.2
         with:
           path: /Library
-          key: Library-${{ matrix.targetPlatform }}
+          key: Library
           restore-keys: |
             Library
 
